@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
     const npm = localStorage.getItem('npm');
     const [data, setData] = useState([])
+    const navigate = useNavigate();
+
    useEffect(() => {
-       const fetchData = async () => {
-           const response = await axios.get(`https://cute-rose-viper-gear.cyclic.app/mahasiswa/${npm}`)
-           const data = []
-           data.push(response.data[0]);
-           setData(data);
+       if(npm == null) {
+           navigate('/login');
        }
-       fetchData();
+       else{
+           const fetchData = async () => {
+               const response = await axios.get(`https://cute-rose-viper-gear.cyclic.app/mahasiswa/${npm}`)
+               const data = []
+               data.push(response.data[0]);
+               setData(data);
+           }
+           fetchData();
+       }
    }, [])
   return (
     <div className=''>
