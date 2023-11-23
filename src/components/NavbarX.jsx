@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Navbar,
   Typography,
   Button,
   Menu,
@@ -8,10 +7,7 @@ import {
   MenuList,
   MenuItem,
   Avatar,
-  IconButton,
   Input,
-  Popover,
-  PopoverHandler,
   Dialog,
   Card,
   CardBody,
@@ -20,18 +16,16 @@ import {
 } from "@material-tailwind/react";
 import {
   ChevronDownIcon,
-  Bars2Icon,
-  MagnifyingGlassCircleIcon,
 } from "@heroicons/react/24/solid";
 
 import { Link } from "react-router-dom";
-import { House, CalendarBlank, Buildings, IdentificationCard, CaretCircleDoubleRight } from "@phosphor-icons/react";
+import { House, CalendarBlank, Buildings, IdentificationCard } from "@phosphor-icons/react";
 import logo from '../assets/logo.png'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import pp from '../assets/Default_pfp.jpg'
- 
+import { motion } from "framer-motion";
 function ProfileMenu() {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -174,7 +168,11 @@ export default function NavbarX() {
   }, []);
  
   return (
-    <div className="">
+    <motion.div
+    initial={{ opacity: 0}}
+    animate={{ opacity: 1}}
+    transition={{ duration: 1, delay: 0.8 }}
+    className="">
 
         <div className=" w-screen shadow-lg rounded-xl md:shadow-none border-b z=10 bg-white fixed p-2 lg:pl-6 top-0">
           <div className="relative flex items-center justify-between text-blue-gray-900">
@@ -251,7 +249,7 @@ export default function NavbarX() {
             </Dialog>
         </div>
       <div>
-      <div className="fixed pt-10 top-16 h-screen w-52 hidden md:block px-3 pb-4 overflow-y-auto bg-white border-r">
+      <div className="shadow-2xl fixed pt-10 top-16 h-screen w-52 hidden md:block px-3 pb-4 overflow-y-auto bg-white border-r">
             <ul className="space-y-2 font-medium">
               <li>
                   <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -317,6 +315,6 @@ export default function NavbarX() {
               </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

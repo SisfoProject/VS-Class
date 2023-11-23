@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import CardCom from '../components/card';
 import CardNoLog from '../components/CardNoLog';
 import Weather from '../components/weather';
+import {motion} from 'framer-motion';
+import { Backpack,Laptop, BookOpenText, Bookmarks } from '@phosphor-icons/react';
 
 function Home() {
     const npm = localStorage.getItem('npm');
@@ -52,16 +54,24 @@ function Home() {
         <div className='flex sm:ml-[9%] md:ml-[11%] lg:ml-[10%]'>
             <div className='flex flex-col w-[90%]'>
                 <div className='flex-col justify-between w-full'>
-                    <h3 className='font-extrabold text-xl '>
+                    <motion.h3
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.1 }}
+                    className='font-extrabold text-lg mt-6'>
                         {sapa + ' '}
                         {localStorage.getItem('npm') !== null ? nama : 'User'}
-                    <p className='font-normal'>
+                    <p className='font-normal text-base'>
                         Welcome to Virtual Schedule Class
                     </p>
-                    </h3>
-                    <div className=''>
+                    </motion.h3>
+                    <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className=''>
                         <Weather />
-                    </div>
+                    </motion.div>
                 </div>
                 <div className='mt-1 text-md text-gray-700'>
  
@@ -71,6 +81,8 @@ function Home() {
     <div>
         {localStorage.getItem('npm') !== null ? <CardCom /> : <CardNoLog />}         
     </div>
+
+
     </div>
   )
 }

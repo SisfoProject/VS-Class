@@ -135,7 +135,9 @@ function Weather() {
               <MapPinLine size={20} />
               {weather.name} 
             </div>
-          {des}
+            <div className='text-gray-700'>
+              {des}
+            </div>
           </p>
         </p>
       </div>
