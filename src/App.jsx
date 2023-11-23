@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
-import Login from "./pages/login/main"
+import Search from "./pages/Search"
 
 function App() {
 
@@ -9,7 +9,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" Component={Home} />
-        <Route path="/login" Component={Login} />
+        <Route path="/search/:title" Component={Search} />
+   
       </Routes>
     </>
   )

@@ -4,12 +4,16 @@ import App from './App.jsx'
 import './index.css'
 import { ThemeProvider } from "@material-tailwind/react";
 import { BrowserRouter } from 'react-router-dom';
+import Navbarcom from './components/navbar.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
+      <Navbarcom />
       <ThemeProvider>
-        <App />
+        <div className="p-4 sm:ml-60 mt-32">
+          <App />
+        </div>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
