@@ -137,10 +137,7 @@ export default function NavbarX() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    navigate(`/search/${title}`);
-  }
+
 
   const handleLogin = async (e) => {
     if(!checked){
@@ -190,10 +187,8 @@ export default function NavbarX() {
               Virtual Schedule Class
             </Typography>
             <div className="flex items-center justify-center lg:ml-32 w-[50%] xl:w-[60%] 2xl:w-[70%]">
-              <input type="text" className=" rounded-3xl w-full" onChange={(e) => setTitle(e.target.value)} />
-              <button onClick={handleSearch}>
-                <CaretCircleDoubleRight size={42} className="text-gray-500"/>
-              </button>
+              <input type="text" className=" rounded-3xl w-full " onChange={(e) => setTitle(e.target.value)} placeholder="Search..." onKeyDown={(e) => e.key === 'Enter' && navigate(`/search/${title}`)}/>
+  
             </div>
             {localStorage.getItem('npm') == null ? (
               <button className="bg-gray-600 mr-3 px-4 py-1 rounded-2xl text-white" onClick={handleOpen}>
