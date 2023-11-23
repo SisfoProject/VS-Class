@@ -176,7 +176,7 @@ export default function NavbarX() {
   return (
     <div className="">
 
-        <div className=" w-screen shadow-2xl md:shadow-none border-b z=10 bg-white fixed p-2 lg:pl-6 top-0">
+        <div className=" w-screen shadow-lg rounded-xl md:shadow-none border-b z=10 bg-white fixed p-2 lg:pl-6 top-0">
           <div className="relative flex items-center justify-between text-blue-gray-900">
             <img src={logo} width={40} alt="" className="ml-5" />
             <Typography
@@ -251,7 +251,7 @@ export default function NavbarX() {
             </Dialog>
         </div>
       <div>
-      <div className="fixed pt-10 top-16 h-screen w-52 hidden md:block px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800 border-r">
+      <div className="fixed pt-10 top-16 h-screen w-52 hidden md:block px-3 pb-4 overflow-y-auto bg-white border-r">
             <ul className="space-y-2 font-medium">
               <li>
                   <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
