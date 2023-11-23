@@ -20,7 +20,7 @@ export default function  CardCom() {
         const hari = new Date().getDay();
   
         try {
-          const response = await axios.get(`https://giddy-lamb-kerchief.cyclic.app/jadwal/${hari}/${kelas}`)
+          const response = await axios.get(`https://coral-codfish-fez.cyclic.app/jadwal/${hari}/${kelas}`)
           const datas = []
           datas.push(response.data);
         

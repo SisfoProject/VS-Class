@@ -129,7 +129,12 @@ function Weather() {
       <div>
    
         <p className='flex items-center gap-2'>
-          {getWeatherComponent()}
+          <motion.div
+            animate={{ x:[-5, 0, 5, 0, -5] , y: [0, 5, 0, -5, 0] }}
+            transition={{ duration: 3, delay: 1, repeat: Infinity,ease: 'linear', type: 'tween' }}
+          >
+            {getWeatherComponent()}
+          </motion.div>
           <p className='font-extrabold text-xl'>
             <div className='flex gap-1'>
               <MapPinLine size={20} />

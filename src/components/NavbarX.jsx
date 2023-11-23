@@ -136,7 +136,7 @@ export default function NavbarX() {
   const handleLogin = async (e) => {
     if(!checked){
       e.preventDefault();
-      axios.post('https://giddy-lamb-kerchief.cyclic.app/login-mahasiswa', {
+      axios.post('https://coral-codfish-fez.cyclic.app//login-mahasiswa', {
           npm: npm,
           password: password
       })
@@ -174,7 +174,7 @@ export default function NavbarX() {
     transition={{ duration: 1, delay: 0.8 }}
     className="">
 
-        <div className=" w-screen shadow-lg rounded-xl md:shadow-none border-b z=10 bg-white fixed p-2 lg:pl-6 top-0">
+        <div className="z-30 w-screen shadow-lg rounded-xl md:shadow-none border-b z=10 bg-white fixed p-2 lg:pl-6 top-0">
           <div className="relative flex items-center justify-between text-blue-gray-900">
             <img src={logo} width={40} alt="" className="ml-5" />
             <Typography
@@ -185,7 +185,7 @@ export default function NavbarX() {
               Virtual Schedule Class
             </Typography>
             <div className="flex items-center justify-center lg:ml-32 w-[50%] xl:w-[60%] 2xl:w-[70%]">
-              <input type="text" className=" rounded-3xl w-full " onChange={(e) => setTitle(e.target.value)} placeholder="Search..." onKeyDown={(e) => e.key === 'Enter' && navigate(`/search/${title}`)}/>
+              <input type="text" className=" rounded-3xl w-[80%] " onChange={(e) => setTitle(e.target.value)} placeholder="Search..." onKeyDown={(e) => e.key === 'Enter' && navigate(`/search/${title}`)}/>
   
             </div>
             {localStorage.getItem('npm') == null ? (
@@ -249,7 +249,7 @@ export default function NavbarX() {
             </Dialog>
         </div>
       <div>
-      <div className="shadow-2xl fixed pt-10 top-16 h-screen w-52 hidden md:block px-3 pb-4 overflow-y-auto bg-white border-r">
+      <div className="shadow-2xl fixed pt-10 top-20 h-screen w-52 lg:w-72 hidden md:block px-3 pb-4 overflow-y-auto bg-white border-r z-20">
             <ul className="space-y-2 font-medium">
               <li>
                   <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -263,7 +263,9 @@ export default function NavbarX() {
                       <div className='absolute top-3 right-[9px] text-xs font-extrabold' >{new Date().getDate()}</div>
                       <CalendarBlank size={32} />
                     </div>
-                    <span className="flex-1 ms-3 whitespace-nowrap">Jadwal</span>
+                    <Link to='/jadwal'>  
+                     <span className="flex-1 ms-3 whitespace-nowrap">Jadwal</span>
+                    </Link>
                     {
                       localStorage.getItem('npm') !== null && localStorage.getItem('countJadwal') !== 30 ? 
                     <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-100 bg-gray-400 rounded-full dark:bg-gray-700 dark:text-gray-300">{localStorage.getItem('countJadwal')}
@@ -272,13 +274,13 @@ export default function NavbarX() {
                   </Link>
               </li>
               <li>
-                  <Link to="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <Link to="/fakultas" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <Buildings size={32} />
                     <span className="flex-1 ms-3 whitespace-nowrap">Fakultas</span>
                   </Link>
               </li>
               <li>
-                  <Link to="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <Link to="/dosen" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <IdentificationCard size={32} />
                     <span className="flex-1 ms-3 whitespace-nowrap">Dosen</span>
                   </Link>
@@ -286,7 +288,7 @@ export default function NavbarX() {
 
             </ul>
         </div>
-        <div className="md:hidden bg-white fixed bottom-1 shadow-2xl w-full border-2 items-center justify-center rounded-full">
+        <div className="md:hidden bg-white fixed bottom-1 shadow-2xl w-full border-2 items-center justify-center rounded-full z-50">
           <ul className="space-y-2 font-medium flex items-center justify-between mx-10">
                 <li>
                     <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -294,7 +296,7 @@ export default function NavbarX() {
                     </Link>
                 </li>
                 <li>
-                    <Link to ="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <Link to ="/jadwal" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                       <div className='relative'>
                         <div className='absolute top-3 right-[9px] text-xs font-extrabold' >{new Date().getDate()}</div>
                         <CalendarBlank size={32} />
@@ -302,12 +304,12 @@ export default function NavbarX() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <Link to="/fakultas" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <Buildings size={32} />
                     </Link>
                 </li>
                 <li>
-                    <Link to="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <Link to="/dosen" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <IdentificationCard size={32} />
                     </Link>
                 </li>

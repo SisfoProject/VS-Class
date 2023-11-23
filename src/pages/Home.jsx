@@ -18,7 +18,7 @@ function Home() {
    useEffect(() => {
          if (npm !== null) {
            const fetchData = async () => {
-               const response = await axios.get(`https://giddy-lamb-kerchief.cyclic.app/mahasiswa/${npm}`)
+               const response = await axios.get(`https://coral-codfish-fez.cyclic.app/mahasiswa/${npm}`)
                const data = []
                data.push(response.data[0]);
                setData(data);
