@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <NavbarX />
       <ThemeProvider>
-        <div className="p-4 md:ml-60 mt-16">
+        <div className="p-4 md:ml-60 mt-16 mb-20">
           <App />
         </div>
       </ThemeProvider>

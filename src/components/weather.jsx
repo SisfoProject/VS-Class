@@ -44,14 +44,12 @@ function Weather() {
           return (
             <>
               <CloudSun size={100} />
-        
             </>
           );
         case "scattered clouds":
           return (
             <>
               <Cloud size={100} />
-           
             </>
           );
         case "broken clouds":
@@ -133,7 +131,10 @@ function Weather() {
         <p className='flex items-center gap-2'>
           {getWeatherComponent()}
           <p className='font-extrabold text-xl'>
-          {weather.name} <br/>
+            <div className='flex gap-1'>
+              <MapPinLine size={20} />
+              {weather.name} 
+            </div>
           {des}
           </p>
         </p>

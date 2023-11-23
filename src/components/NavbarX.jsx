@@ -179,9 +179,9 @@ export default function NavbarX() {
   return (
     <div className="">
 
-        <div className=" w-screen border-b z=10 bg-white fixed p-2 lg:pl-6 top-0">
+        <div className=" w-screen shadow-2xl md:shadow-none border-b z=10 bg-white fixed p-2 lg:pl-6 top-0">
           <div className="relative flex items-center justify-between text-blue-gray-900">
-            <img src={logo} width={30} alt="" />
+            <img src={logo} width={40} alt="" className="ml-5" />
             <Typography
               as="a"
               href="#"
