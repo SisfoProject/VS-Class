@@ -205,7 +205,7 @@ function navbarcom() {
                     </div>
                     <span className="flex-1 ms-3 whitespace-nowrap">Jadwal</span>
                     {
-                      localStorage.getItem('npm') !== null ? 
+                      localStorage.getItem('npm') !== null && localStorage.getItem('countJadwal') !== 30 ? 
                     <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-100 bg-gray-400 rounded-full dark:bg-gray-700 dark:text-gray-300">{localStorage.getItem('countJadwal')}
                     </span> : null
                     }
