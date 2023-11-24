@@ -4,6 +4,7 @@ import Search from "./pages/Search"
 import Jadwal from "./pages/jadwal/Jadwal"
 import Fakultas from "./pages/fakultas/Fakultas"
 import { Dosen } from "./pages/dosen"
+import profile from "./pages/profile"
 function App() {
 
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/jadwal" Component={Jadwal} />
         <Route path="/fakultas" Component={Fakultas} />
         <Route path="/dosen" Component={Dosen} />
+        <Route path="/profile" Component={profile} />
       </Routes>
     </>
   )

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './jadwal.css';
 import {motion} from 'framer-motion';
+import { Skeleton } from 'antd';
 function Jadwal() {
   const kelas = localStorage.getItem('kelas');
   const [groupedData, setGroupedData] = useState({});
@@ -41,11 +42,16 @@ function Jadwal() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
+    return(
+      <div className='md:ml-20 mt-8 flex flex-col gap-3'>
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+      </div>
+    ) 
   }
 
   return (

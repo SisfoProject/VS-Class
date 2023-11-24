@@ -5,7 +5,7 @@ import CardCom from '../components/card';
 import CardNoLog from '../components/CardNoLog';
 import Weather from '../components/weather';
 import {motion} from 'framer-motion';
-import { Backpack,Laptop, BookOpenText, Bookmarks } from '@phosphor-icons/react';
+import { Skeleton } from 'antd';
 
 function Home() {
     const npm = localStorage.getItem('npm');
@@ -13,10 +13,11 @@ function Home() {
     const [sapa, setSapa] = useState('')
     const [nama, setNama] = useState('')
     const navigate = useNavigate();
-    
+    const [loading, setLoading] = useState(false);
 
    useEffect(() => {
          if (npm !== null) {
+           setLoading(true);
            const fetchData = async () => {
                const response = await axios.get(`https://coral-codfish-fez.cyclic.app/mahasiswa/${npm}`)
                const data = []
@@ -25,6 +26,9 @@ function Home() {
                setNama(response.data[0].nama_mahasiswa);
                localStorage.setItem('nama', response.data[0].nama_mahasiswa)
                localStorage.setItem('kelas', response.data[0].kelas)
+               localStorage.setItem('prodi', response.data[0].prodi)
+               localStorage.setItem('angkatan', response.data[0].angkatan)
+               setLoading(false);
            }
            fetchData();
         }
@@ -49,6 +53,14 @@ function Home() {
    }, [])
 
 
+   if (loading) {
+    return(
+      <div className='md:ml-20 mt-8 flex flex-col gap-3'>
+        <Skeleton active />
+        <Skeleton active />
+      </div>
+    ) 
+  }
   return (
     <div>
         <div className='flex sm:ml-[9%] md:ml-[11%] lg:ml-[10%]'>

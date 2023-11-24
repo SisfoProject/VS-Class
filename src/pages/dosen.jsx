@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect} from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-
+import { Skeleton } from "antd";
 export function Dosen() {
 
   const navigate = useNavigate();
@@ -31,9 +31,18 @@ export function Dosen() {
 }, []);
 
 
-  if(loading) {
-    return <div>Loading...</div>
-  }
+if (loading) {
+  return(
+    <div className='md:ml-20 mt-8 flex flex-col gap-3'>
+      <Skeleton active />
+      <Skeleton active />
+      <Skeleton active />
+      <Skeleton active />
+      <Skeleton active />
+      <Skeleton active />
+    </div>
+  ) 
+}
   return (
     <div className="flex flex-wrap gap-8 lg:ml-20 mt-10 justify-center ">
       {data.map((d, i) => (

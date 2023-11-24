@@ -6,15 +6,16 @@ import axios from 'axios';
 import {motion} from 'framer-motion';
 import { WhatsappLogo, Envelope, DotsThreeCircle } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
-
+import { Skeleton } from 'antd';
 
 export default function  CardCom() {
 
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   
   useEffect(() => {
-   
+      setLoading(true);
       const fetchData = async () => {
         const kelas = localStorage.getItem('kelas');
         const hari = new Date().getDay();
@@ -29,15 +30,17 @@ export default function  CardCom() {
             localStorage.setItem('countJadwal', 0)
             localStorage.setItem('showJadwal',0)
             localStorage.setItem('showCount', 0)
+            setLoading(false);
           }
           else {
             setData(datas[0]);
             localStorage.setItem('countJadwal', datas[0].length);
             localStorage.setItem('showJadwal',1)
             localStorage.setItem('showCount', 1)
+            setLoading(false);
           }
           
-      
+          
         } catch (error) {
           console.error(error);
         }
@@ -46,6 +49,16 @@ export default function  CardCom() {
     
 
   }, []);
+
+  if (loading) {
+    return(
+      <div className='md:ml-20 mt-8 flex flex-col gap-3'>
+        <Skeleton active />
+        <Skeleton active />
+      </div>
+    ) 
+  }
+  else{
 
   return (
     <div>
@@ -99,11 +112,17 @@ export default function  CardCom() {
         
       )
               : (
-                <div className='md:pl-20 lg:pl-36 items-center justify-center md:justify-start md:items-start'>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+
+                className='md:pl-20 lg:pl-36 items-center justify-center md:justify-start md:items-start'>
                   Kamu tidak ada jadwal Hari ini
-                </div>
+                </motion.div>
               )
     }
     </div>
   );
+  }
 }

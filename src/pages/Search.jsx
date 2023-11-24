@@ -6,14 +6,15 @@ import axios from 'axios';
 import {motion} from 'framer-motion';
 import { WhatsappLogo, Envelope, DotsThreeCircle } from '@phosphor-icons/react';
 import { Link, useParams } from 'react-router-dom';
-
+import { Skeleton } from 'antd';
 
 function Search() {
 
   const { title } = useParams();
   const [data, setData] = useState([]);
-  
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
       const fetchData = async () => {
   
         try {
@@ -22,18 +23,34 @@ function Search() {
           datas.push(response.data);
           if (datas[0].length == 0) {
             setData([])
+            setLoading(false);
           }
           else {
             setData(datas[0]);
+            setLoading(false);
           }
         } catch (error) {
           console.error(error);
+          setLoading(false);
+
         }
       }
     fetchData();
     
   }, [title]);
 
+  if (loading) {
+    return(
+      <div className='md:ml-20 mt-8 flex flex-col gap-3'>
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+      </div>
+    ) 
+  }
 
   return (
     <div>
@@ -85,9 +102,14 @@ function Search() {
     </div>
       )
         : (
-          <div>
+          <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className='flex justify-center items-center h-screen'
+          >
             Jadwal tidak ditemukan
-          </div>
+          </motion.div>
         )
       }
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Typography,
   Button,
@@ -17,6 +17,8 @@ import {
 import {
   ChevronDownIcon,
 } from "@heroicons/react/24/solid";
+
+import Loading from "./loading";
 
 import { Link } from "react-router-dom";
 import { House, CalendarBlank, Buildings, IdentificationCard } from "@phosphor-icons/react";
@@ -93,7 +95,9 @@ function ProfileMenu() {
                 variant="small"
                 className="font-normal hover:bg-gray-200 px-2 w-full rounded-lg "
               >
-                Profile
+                <Link to = '/profile'>
+                 Profile
+                </Link>
               </Typography>
               <Typography
                 as="span"
@@ -130,10 +134,11 @@ export default function NavbarX() {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
-
+  const [loading, setLoading] = React.useState(false);
 
 
   const handleLogin = async (e) => {
+    setLoading(true);
     if(!checked){
       e.preventDefault();
       axios.post('https://coral-codfish-fez.cyclic.app//login-mahasiswa', {
@@ -148,6 +153,7 @@ export default function NavbarX() {
               localStorage.setItem('kelas', data.kelas);
               localStorage.setItem('showJadwal', 1);
               setOpen((cur) => !cur);
+              setLoading(false);
               navigate('/');
           }else {
               alert(res.data.message);
@@ -159,6 +165,8 @@ export default function NavbarX() {
       })
     }
   }
+
+
  
   React.useEffect(() => {
     window.addEventListener(
@@ -167,6 +175,14 @@ export default function NavbarX() {
     );
   }, []);
  
+  if(loading){
+    return (
+    <div className="flex justify-center items-center w-screen h-screen">
+      <Loading />
+    </div>
+    )
+  }
+
   return (
     <motion.div
     initial={{ opacity: 0}}
@@ -288,7 +304,7 @@ export default function NavbarX() {
 
             </ul>
         </div>
-        <div className="md:hidden bg-white fixed bottom-1 shadow-2xl w-full border-2 items-center justify-center rounded-full z-50">
+        <div className="md:hidden bg-white fixed bottom-0 shadow-2xl w-full border-2 items-center justify-center rounded-t-3xl z-50">
           <ul className="space-y-2 font-medium flex items-center justify-between mx-10">
                 <li>
                     <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
