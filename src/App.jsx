@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route,Navigate } from "react-router-dom"
 import Home from "./pages/Home"
 import Search from "./pages/Search"
 import Jadwal from "./pages/jadwal/Jadwal"
@@ -17,6 +17,7 @@ function App() {
         <Route path="/fakultas" Component={Fakultas} />
         <Route path="/dosen" Component={Dosen} />
         <Route path="/profile" Component={profile} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   )
