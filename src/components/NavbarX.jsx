@@ -42,6 +42,7 @@ function ProfileMenu() {
     localStorage.removeItem('nama');
     localStorage.removeItem('kelas');
     localStorage.removeItem('token');
+    navigate('/');
     window.location.reload();
 }
 
