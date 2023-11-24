@@ -12,7 +12,11 @@ import {
   Card,
   CardBody,
   Checkbox,
-  CardFooter
+  CardFooter,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+
 } from "@material-tailwind/react";
 import {
   ChevronDownIcon,
@@ -28,6 +32,19 @@ import { useNavigate } from "react-router-dom";
 import { useState} from "react";
 import pp from '../assets/Default_pfp.jpg'
 import { motion } from "framer-motion";
+import { Divider, notification, Space } from 'antd';
+import {
+  BorderBottomOutlined,
+  BorderTopOutlined,
+  RadiusBottomleftOutlined,
+  RadiusBottomrightOutlined,
+  RadiusUpleftOutlined,
+  RadiusUprightOutlined,
+} from '@ant-design/icons';
+
+
+
+
 function ProfileMenu() {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -43,8 +60,7 @@ function ProfileMenu() {
     localStorage.removeItem('kelas');
     localStorage.removeItem('token');
     navigate('/');
-    window.location.reload();
-}
+  }
 
 
 
@@ -90,16 +106,18 @@ function ProfileMenu() {
                  Kelas {localStorage.getItem('kelas')}
                 </p>
               </Typography>
- 
+
+              <Link to = '/profile' className="w-full">
               <Typography
                 as="span"
                 variant="small"
-                className="font-normal hover:bg-gray-200 px-2 w-full rounded-lg "
+                className="font-normal hover:bg-gray-200 px-2 w-full rounded-lg w-full "
               >
-                <Link to = '/profile'>
+              
                  Profile
-                </Link>
+         
               </Typography>
+              </Link>
               <Typography
                 as="span"
                 variant="small"
@@ -136,7 +154,8 @@ export default function NavbarX() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
   const [loading, setLoading] = React.useState(false);
-
+  const [status, setStatus] = React.useState('');
+  const [opens, setOpens] = React.useState(false);
 
   const handleLogin = async (e) => {
     setLoading(true);
@@ -153,16 +172,24 @@ export default function NavbarX() {
               localStorage.setItem('nama', data.nama_mahasiswa);
               localStorage.setItem('kelas', data.kelas);
               localStorage.setItem('showJadwal', 1);
+              setStatus('Login Success');
+              setOpens(true);
               setOpen((cur) => !cur);
               setLoading(false);
               navigate('/');
+             
+             
           }else {
               alert(res.data.message);
+              setStatus(res.data.message);
           }
       })
       .catch((err) => {
           console.log(err);
-          alert("Npm or Password is incorrect");
+          setStatus('Npm or Password is incorrect');
+          setOpens(true);
+          setLoading(false);
+          navigate('/');
       })
     }
   }
@@ -184,6 +211,9 @@ export default function NavbarX() {
     )
   }
 
+
+
+
   return (
     <motion.div
     initial={{ opacity: 0}}
@@ -195,8 +225,6 @@ export default function NavbarX() {
           <div className="relative flex items-center justify-between text-blue-gray-900">
             <img src={logo} width={40} alt="" className="ml-5" />
             <Typography
-              as="a"
-              href="#"
               className="hidden md:flex mr-4 ml-2 cursor-pointer py-1.5 font-extrabold"
             >
               Virtual Schedule Class
@@ -206,7 +234,7 @@ export default function NavbarX() {
   
             </div>
             {localStorage.getItem('npm') == null ? (
-              <button className="bg-gray-600 mr-3 px-4 py-1 rounded-2xl text-white" onClick={handleOpen}>
+              <button className="bg-gray-600 mr-3 px-4 py-1 rounded-2xl text-white" onClick={handleOpen}  icon={<BorderTopOutlined />}>
                 Login
               </button>
               
@@ -251,8 +279,6 @@ export default function NavbarX() {
                   <Typography variant="small" className="mt-4 flex justify-center">
                     Lupa Password?
                     <Typography
-                      as="a"
-                      href="#signup"
                       variant="small"
                       color="blue-gray"
                       className="ml-1 font-bold"
@@ -264,6 +290,22 @@ export default function NavbarX() {
                 </CardFooter>
               </Card>
             </Dialog>
+            <div>
+
+            <Dialog open={opens} handler={() => setOpens(false) } size="xs">
+                <DialogHeader>Hello </DialogHeader>
+                <DialogBody>
+                  {status}
+                </DialogBody>
+                <DialogFooter>
+
+                  <Button variant="gradient" color="gray" onClick={() => setOpens(false) && setOpen((cur) => cur) } >
+                    <span>Confirm</span>
+                  </Button>
+                </DialogFooter>
+              </Dialog>
+
+            </div>
         </div>
       <div>
       <div className="shadow-2xl fixed pt-10 top-20 h-screen w-52 lg:w-72 hidden md:block px-3 pb-4 overflow-y-auto bg-white border-r z-20">

@@ -44,19 +44,19 @@ if (loading) {
   ) 
 }
   return (
-    <div className="flex flex-wrap gap-8 lg:ml-20 mt-10 justify-center ">
+    <div className="flex flex-wrap gap-4 sm:gap-8 lg:ml-20 mt-10 justify-center ">
       {data.map((d, i) => (
         <motion.div key={d.id}
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: i * 0.1 }}
         >
-          <Card className="w-56 shadow-2xl border-2" >
-            <CardHeader floated={false} className="w-44 rounded-full">
+          <Card className="w-40 shadow-2xl border-2 h-72" >
+            <CardHeader floated={false} className="w-28 rounded-full">
               <img src={pp} alt="profile-picture" />
             </CardHeader>
             <CardBody className="text-center">
-              <Typography variant="p" color="blue-gray" className="mb-2 text-xs font-bold">
+              <Typography variant="paragraph" color="blue-gray" className="mb-2 text-xs font-bold">
                 {d.gelar_depan + ' '}
                 {d.nama_dosen + ' '} 
                 {d.gelar_belakang}

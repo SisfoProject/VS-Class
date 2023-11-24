@@ -1,6 +1,6 @@
 import React from 'react'
 import pp from '../assets/Default_pfp.jpg'
-
+import {motion} from 'framer-motion'
 function profile() {
 
   const nama = localStorage.getItem('nama')
@@ -11,7 +11,11 @@ function profile() {
   const email = localStorage.getItem('email')
 
   return (
-    <div className='md:ml-20 mt-8 flex flex-col md:flex-row gap-3 border p-6 rounded-3xl shadow-2xl'>
+    <motion.div
+    initial={{ opacity: 0 , y: -50 }}
+    animate={{ opacity: 1 , y: 0 }}
+    transition={{ duration: 0.8, delay: 0.1 }}
+    className='md:ml-20 mt-8 flex flex-col md:flex-row gap-3 border p-6 rounded-3xl shadow-2xl'>
         <div className='border-r-2 pr-6 border-gray-700'>
           <img src={pp} alt="" width={200} />
         </div>
@@ -27,7 +31,7 @@ function profile() {
             Email : {email}
           </div>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

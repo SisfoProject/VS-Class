@@ -46,7 +46,7 @@ export default function  CardCom() {
         }
       }
     fetchData();
-    
+ 
 
   }, []);
 
@@ -93,7 +93,7 @@ export default function  CardCom() {
                     </p>
                   </div>
                   <div className='flex gap-2'>
-                    <Link to="">
+                    <Link to={`https://wa.me/62${data.no_hp}`}>
                       <WhatsappLogo size={25} />
                     </Link>
                     <Link>

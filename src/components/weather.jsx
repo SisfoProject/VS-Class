@@ -36,87 +36,70 @@ function Weather() {
       switch (weather.weather[0].description) {
         case "clear sky":
           return (
-            <>
+           
               <Sun size={100} />
-            </>
+          
           );
         case "few clouds":
           return (
-            <>
+       
               <CloudSun size={100} />
-            </>
+            
           );
         case "scattered clouds":
           return (
-            <>
+       
               <Cloud size={100} />
-            </>
+       
           );
         case "broken clouds":
           return (
-            <>
+         
               <Cloud size={100} />
-            </>
+       
           );
         case "overcast clouds":
           return (
-            < >
+        
               <Cloud size={100} />
-            
-            </>
+       
           );
         case "light rain":
           return (
-            <>
+          
              <CloudRain size={100} />
-      
-            </>
+
           );
         case "moderate rain":
           return (
-            < >
+         
              <CloudRain size={100} />
-            </>
+        
           );
         case "heavy intensity rain":
           return (
-            <>
-       
               <CloudRain size={100} />
-            </>
+  
           );
         case "thunderstorm":
           return (
-            <>
-     
               <CloudLightning size={100} />  
-            </>
           );
         case "light snow":
           return (
-            <>
-         
               <CloudSnow size={100} />
-            </>
           );
         case "snow":
           return (
-            <>
-         
               <CloudSnow size={100} />
-            </>
           );
         case "mist":
           return (
-            <>
               <CloudFog size={100} />
-            </>
           );
         default:
           return (
-            <>
              <Cloud size={100} />    
-            </>
           );
       }
     } else {
@@ -135,7 +118,7 @@ function Weather() {
           >
             {getWeatherComponent()}
           </motion.div>
-          <p className='font-extrabold text-xl'>
+          <p className='font-extrabold text-xl border-l-2 border-gray-500 pl-4'>
             <div className='flex gap-1'>
               <MapPinLine size={20} />
               {weather.name} 
