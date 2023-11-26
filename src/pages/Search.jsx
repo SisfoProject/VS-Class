@@ -18,7 +18,7 @@ function Search() {
       const fetchData = async () => {
   
         try {
-          const response = await axios.get(`https://coral-codfish-fez.cyclic.app/search/${title}`)
+          const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/search/${title}`)
           const datas = []
           datas.push(response.data);
           if (datas[0].length == 0) {
@@ -55,8 +55,8 @@ function Search() {
   return (
     <div>
       {data.length !== 0 ? (
-      <div className='md:pl-20 lg:pl-36 items-center justify-center md:justify-start md:items-start'>
-      <div className='flex w-full flex-wrap mt-10 gap-10'>
+      <div className=' items-center justify-center mt-14'>
+       <div className='flex w-full flex-wrap mt-10  gap-10 items-center justify-center xl:px-10'>
         {data.map((data, index) => (
           <motion.div key={data.id}
             initial={{ opacity: 0, scale: 0.5 }}
@@ -64,7 +64,7 @@ function Search() {
             transition={{ duration: 0.5,delay: index*0.1 }}
 
           >
-            <Card className="w-96 shadow-2xl"   horizontal>
+               <Card className="w-[310px] shadow-xl lg:w-[370px]"   horizontal>
               <div className='flex flex-col'>
                 <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                   {data.nama_matkul}
@@ -78,7 +78,7 @@ function Search() {
                   Waktu : {data.jam}
                 </p>
                 <p>
-                  Kelas : {data.nama_ruangan}
+                  Ruangan : {data.nama_ruangan}
                 </p>
                 <p>
                   Gedung : {data.nama_gedung}

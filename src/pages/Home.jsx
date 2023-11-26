@@ -3,36 +3,56 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CardCom from '../components/card';
 import CardNoLog from '../components/CardNoLog';
-import Weather from '../components/weather';
 import {motion} from 'framer-motion';
 import { Skeleton } from 'antd';
+import {dotenv} from 'dotenv';
+
 
 function Home() {
     const npm = localStorage.getItem('npm');
+    const noHp = localStorage.getItem('noHp');
     const [data, setData] = useState([])
     const [sapa, setSapa] = useState('')
     const [nama, setNama] = useState('')
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const style = localStorage.getItem('style')
 
-   useEffect(() => {
-         if (npm !== null) {
-           setLoading(true);
-           const fetchData = async () => {
-               const response = await axios.get(`https://coral-codfish-fez.cyclic.app/mahasiswa/${npm}`)
-               const data = []
-               data.push(response.data[0]);
-               setData(data);
-               setNama(response.data[0].nama_mahasiswa);
-               localStorage.setItem('nama', response.data[0].nama_mahasiswa)
-               localStorage.setItem('kelas', response.data[0].kelas)
-               localStorage.setItem('prodi', response.data[0].prodi)
-               localStorage.setItem('angkatan', response.data[0].angkatan)
-               setLoading(false);
-           }
-           fetchData();
+    useEffect(() => {
+      
+        const fetchData = async () => {
+          try {
+
+            setLoading(true);
+            const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/mahasiswa/${npm}`);
+            const userData = response.data[0];
+            setData([userData]);
+            setNama(userData.nama_mahasiswa);
+            localStorage.setItem('nama', userData.nama_mahasiswa);
+            localStorage.setItem('kelas', userData.kelas);
+            localStorage.setItem('prodi', userData.prodi);
+            localStorage.setItem('angkatan', userData.angkatan);
+            localStorage.setItem('status', 'mahasiswa');
+            localStorage.setItem('npm', npm);
+            localStorage.setItem('email', userData.email);
+            localStorage.setItem('img_url', userData.foto_mahasiswa );
+            
+            localStorage.setItem('kosma', userData.kosma);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        if (npm !== null) {
+          fetchData();
+        } else if (noHp !== null) {
+          setNama(localStorage.getItem('nama'));
+        } else {
+          navigate('/');
         }
-   }, [npm])
+      }, [npm, noHp]);
 
 
 
@@ -63,36 +83,30 @@ function Home() {
   }
   return (
     <div>
-        <div className='flex sm:ml-[9%] md:ml-[11%] lg:ml-[10%]'>
-            <div className='flex flex-col w-[90%]'>
-                <div className='flex-col justify-between w-full'>
+        <div className='flex justify-center items-center w-full '>
+            <div className='flex flex-col sm:w-[90%]'>
+                <div className='flex-col justify-center items-center w-full'>
                     <motion.h3
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
-                    className='font-extrabold text-lg mt-6'>
+                    className='font-extrabold text-lg mt-20 text-center'>
                         {sapa + ' '}
-                        {localStorage.getItem('npm') !== null ? nama : 'User'}
-                    <p className='font-normal text-base'>
+                        {localStorage.getItem('npm') !== null || localStorage.getItem('noHp') !== null ? nama : 'User'}
+                    <p className='font-normal text-base text-'>
                         Welcome to Virtual Schedule Class
                     </p>
                     </motion.h3>
-                    <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className=''>
-                        <Weather />
-                    </motion.div>
+
                 </div>
                 <div className='mt-1 text-md text-gray-700'>
- 
+                  <div>
+                  {(localStorage.getItem('npm') !== null || localStorage.getItem('noHp') !== null) ? <CardCom /> : <CardNoLog />}
+                  </div>
+              
                 </div>
             </div>
         </div>
-    <div>
-        {localStorage.getItem('npm') !== null ? <CardCom /> : <CardNoLog />}         
-    </div>
 
 
     </div>

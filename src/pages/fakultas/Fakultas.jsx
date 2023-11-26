@@ -2,8 +2,15 @@ import React from 'react'
 import './Fakultas.css'
 import {Globe, SignIn} from '@phosphor-icons/react'
 import {motion} from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 function Fakultas() {
+
+  const navigate = useNavigate();
+
+  const handleRuangan = () => {
+    navigate('/ruangan')
+  }
   return (
     <div className=''>
         <motion.div
@@ -27,14 +34,14 @@ function Fakultas() {
             </div>
             <div className="course-progress">
                 <div className="progress-container">
-                    <div className="progress-text">
+                    {/* <div className="progress-text">
                         Tahun 2023
-                    </div>
+                    </div> */}
                 </div>
                 <h2 className='font-bold text-xl'>Gedung B</h2>
                 <h6 className='text-sm'>Sistem Informasi</h6>
             </div>
-            <button className="text-gray-700 flex gap-1 absolute bottom-3 right-5 font-bold">
+            <button onClick={handleRuangan} className="text-gray-700 flex gap-1 absolute bottom-3 right-5 font-bold">
                 <SignIn size={25} className='font-bold' />
                   Ruangan
               </button>

@@ -13,6 +13,10 @@ import { useState, useEffect} from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Skeleton } from "antd";
+import { Link } from "react-router-dom";
+import { Table } from 'flowbite-react';
+
+
 export function Dosen() {
 
   const navigate = useNavigate();
@@ -22,7 +26,7 @@ export function Dosen() {
   useEffect(() => {
     const fetchData = async () => {
         setLoading(true);
-        const response = await axios.get(`https://coral-codfish-fez.cyclic.app/dosen`);
+        const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/dosen`);
         setData(response.data);
         setLoading(false);
     };
@@ -45,65 +49,58 @@ if (loading) {
 }
   return (
     <div className="flex flex-wrap gap-4 sm:gap-8 lg:ml-20 mt-10 justify-center ">
-      {data.map((d, i) => (
-        <motion.div key={d.id}
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: i * 0.1 }}
-        >
-          <Card className="w-40 shadow-2xl border-2 h-72" >
-            <CardHeader floated={false} className="w-28 rounded-full">
-              <img src={pp} alt="profile-picture" />
-            </CardHeader>
-            <CardBody className="text-center">
-              <Typography variant="paragraph" color="blue-gray" className="mb-2 text-xs font-bold">
-                {d.gelar_depan + ' '}
-                {d.nama_dosen + ' '} 
-                {d.gelar_belakang}
-              </Typography>
-              <Typography color="blue-gray" className="font-medium flex justify-center items-center gap-3" textGradient>
-                <WhatsappLogo size={30} className="text-gray-700" />
-                <Envelope size={30} className="text-gray-700" />
-              </Typography>
-            </CardBody>
-            <CardFooter className="flex justify-center gap-7 pt-2">
-              <Tooltip content="Like">
-                <Typography
-                  as="a"
-                  href="#facebook"
-                  variant="lead"
-                  color="blue"
-                  textGradient
+      <div className="overflow-x-auto w-full px-2">
+        <h1 className="text-center font-bold text-xl text-gray-700 mb-20">Daftar Dosen Pengajar</h1>
+      <Table hoverable className="w-full">
+        <Table.Head>
+          <Table.HeadCell>No</Table.HeadCell>
+          <Table.HeadCell>Nama Dosen</Table.HeadCell>
+          <Table.HeadCell className="text-center">Contact</Table.HeadCell>
+        </Table.Head>
+        <Table.Body className="divide-y">
+        {data.map((item, index) => (
+          
+          <Table.Row key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+               {data.indexOf(item) + 1}
+              </motion.div>
+            </Table.Cell>
+            <Table.Cell>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                {item.nama_dosen}
+              </motion.div>
+            </Table.Cell>
+            <Table.Cell>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex justify-center items-center"
                 >
-                  <i className="fab fa-facebook" />
-                </Typography>
-              </Tooltip>
-              <Tooltip content="Follow">
-                <Typography
-                  as="a"
-                  href="#twitter"
-                  variant="lead"
-                  color="light-blue"
-                  textGradient
-                >
-                  <i className="fab fa-twitter" />
-                </Typography>
-              </Tooltip>
-              <Tooltip content="Follow">
-                <Typography
-                  as="a"
-                  href="#instagram"
-                  variant="lead"
-                  color="purple"
-                  textGradient
-                >
-                  <i className="fab fa-instagram" />
-                </Typography>
-              </Tooltip>
-            </CardFooter>
-          </Card>
-        </motion.div>       
-      ))}
+                  <Link to={`https://wa.me/62${item.no_hp}`}>
+                      <WhatsappLogo size={25} className="text-gray-700"/>
+                  </Link>
+                  <Link to={`mailto:${item.email}`}>
+                    <Envelope size={25} className="text-gray-700 ml-3"/>
+                  </Link>
+                </motion.div>
+            </Table.Cell>
+ 
+          </Table.Row>
+        ))}
+       
+        </Table.Body>
+      </Table>
+    </div>
     </div>
   );
 }

@@ -6,13 +6,14 @@ import { ThemeProvider } from "@material-tailwind/react";
 import { BrowserRouter } from 'react-router-dom';
 import NavbarX from './components/NavbarX'
 import 'flowbite'
+const style = localStorage.getItem('style')
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <NavbarX />
+      <NavbarX  />
       <ThemeProvider>
-        <div className="p-4 md:ml-60 mt-16 mb-20">
+        <div className={"p-4 md:ml-60 mt-16 mb-20 transition-all duration-300 "}>
           <App />
         </div>
       </ThemeProvider>
