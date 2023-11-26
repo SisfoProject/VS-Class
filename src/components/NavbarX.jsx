@@ -88,7 +88,7 @@ function ProfileMenu() {
             variant="circular"
             size="sm"
             className="border border-gray-900 p-0.5"
-            src={img} 
+            src={defaultPfp} 
             
           />
           <ChevronDownIcon
