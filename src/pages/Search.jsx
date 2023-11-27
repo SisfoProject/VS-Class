@@ -87,14 +87,24 @@ function Search() {
                   Gedung : {data.nama_gedung}
                 </p>
               </div>
-              <div className='flex gap-2'>
-                <Link to="">
-                  <WhatsappLogo size={25} />
-                </Link>
-                <Link>
-                  <Envelope size={25} />
-                </Link>
-              </div>
+                  <div className='flex gap-2 items-center relative'>
+                    <Link to={`https://wa.me/62${data.no_hp}`}>
+                      <WhatsappLogo size={25} />
+                    </Link>
+                    <Link to={`mailto:${data.email}`}>
+                      <Envelope size={25} className="text-gray-700"/>
+                    </Link>
+                    {localStorage.getItem('status') === 'mahasiswa' ? (
+                      null
+                    ): (
+                    <Link to ={`/jadwal/${data.id}`}>
+                      <DotsThreeCircle size={25} />
+                    </Link>
+                      )}
+                      <p className='text-xs font-bold absolute bottom-0 right-0'>
+                        {data.keterangan}
+                      </p>
+                  </div>
             </Card>
           </motion.div>
         ))}
