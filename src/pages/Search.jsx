@@ -75,7 +75,7 @@ function Search() {
               </div>
               <div className='flex flex-col text-xs'>
                 <p>
-                  Waktu : {data.jam}
+                  Waktu : day {data.hari}, {data.jam} WIB
                 </p>
                 <p>
                   Kelas : {data.kelas}
