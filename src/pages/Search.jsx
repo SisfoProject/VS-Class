@@ -94,9 +94,6 @@ function Search() {
                 <Link>
                   <Envelope size={25} />
                 </Link>
-                <Link>
-                  <DotsThreeCircle size={25} />
-                </Link>
               </div>
             </Card>
           </motion.div>
