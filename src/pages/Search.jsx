@@ -94,13 +94,7 @@ function Search() {
                     <Link to={`mailto:${data.email}`}>
                       <Envelope size={25} className="text-gray-700"/>
                     </Link>
-                    {localStorage.getItem('status') === 'mahasiswa' ? (
-                      null
-                    ): (
-                    <Link to ={`/jadwal/${data.id}`}>
-                      <DotsThreeCircle size={25} />
-                    </Link>
-                      )}
+                   
                       <p className='text-xs font-bold absolute bottom-0 right-0'>
                         {data.keterangan}
                       </p>
