@@ -78,6 +78,9 @@ function Search() {
                   Waktu : {data.jam}
                 </p>
                 <p>
+                  Kelas : {data.kelas}
+                </p>
+                <p>
                   Ruangan : {data.nama_ruangan}
                 </p>
                 <p>
