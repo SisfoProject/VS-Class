@@ -62,7 +62,7 @@ function Jadwal() {
 
 
   return (
-    <div className='md:ml-16 lg:28 mt-8'>
+    <div className='md:ml-16 lg:28 mt-8 mb-20'>
       {Object.keys(groupedData).length === 0 ? (
         <motion.div
         initial={{ opacity: 0, y: -50 }}
@@ -107,6 +107,7 @@ function Jadwal() {
                     <>
                       <th>Kelas</th>
                       <th>Note</th>
+                      <th>Action</th>
                     </>
                   )}
                   </tr>
@@ -125,6 +126,7 @@ function Jadwal() {
                           <>
                            <td>{item.kelas}</td>
                            <td><Link to ={`/jadwal/${item.id}`} className='text-green-700'>Tambah</Link></td>
+                           <td><Link to ={`/jadwal-edit/${item.id}`} className='text-green-700'>Edit</Link></td>
                           </>
                         )}
                     </tr>

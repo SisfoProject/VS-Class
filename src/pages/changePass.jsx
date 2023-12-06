@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useParams,useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios';
+import Loading from '../components/loading';
 function changePass() {
   const { id } = useParams();
   const [password, setPassword] = useState('');
@@ -11,6 +12,7 @@ function changePass() {
   const [urlLocA, setUrlLocA] = useState('');
   const [urlLocB, setUrlLocB] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setPassword(newPassword)
@@ -25,6 +27,7 @@ function changePass() {
   }, [id, newPassword])
 
   const handleUpdate = () => {
+    setLoading(true);
     if(newPassword == confirmPassword){      
       axios.post(`https://cute-pink-fish-gear.cyclic.app/${urlLocB}/${id}`, {
        password : oldPassword
@@ -35,25 +38,35 @@ function changePass() {
           })
           .then((res) => {
             if(res.status === 200){
+              setLoading(false);
               alert('password updated')
               navigate('/profile')
             }
             else{
+              setLoading(false);
               alert('error')
             }
         }) .catch((err) => {
+          setLoading(false);
           console.log(err)
         }) 
      } else{
+       setLoading(false);
        alert(res.data)
      }
   })
 } else{
+    setLoading(false);
     alert('password not match')
 }}
   
   const handleBack = () => {
+    setLoading(false);
     navigate('/profile')
+  }
+
+  if(loading){
+    return <div className=' mt-48 flex justify-center items-center'><Loading/></div>
   }
 
 

@@ -75,10 +75,7 @@ function Search() {
               </div>
               <div className='flex flex-col text-xs'>
                 <p>
-                  Waktu : Day {data.hari}, {data.jam} WIB
-                </p>
-                <p>
-                  Kelas : {data.kelas}
+                  Waktu : Day {data.hari}, {data.jam}
                 </p>
                 <p>
                   Ruangan : {data.nama_ruangan}
@@ -86,19 +83,21 @@ function Search() {
                 <p>
                   Gedung : {data.nama_gedung}
                 </p>
+                <p>
+                  Kelas : {data.kelas}
+                </p>
               </div>
-                  <div className='flex gap-2 items-center relative'>
-                    <Link to={`https://wa.me/62${data.no_hp}`}>
-                      <WhatsappLogo size={25} />
-                    </Link>
-                    <Link to={`mailto:${data.email}`}>
-                      <Envelope size={25} className="text-gray-700"/>
-                    </Link>
-                   
-                      <p className='text-xs font-bold absolute bottom-0 right-0'>
-                        {data.keterangan}
-                      </p>
-                  </div>
+              <div className='flex gap-2'>
+                <Link to="">
+                  <WhatsappLogo size={25} />
+                </Link>
+                <Link>
+                  <Envelope size={25} />
+                </Link>
+                {/* <Link>
+                  <DotsThreeCircle size={25} />
+                </Link> */}
+              </div>
             </Card>
           </motion.div>
         ))}
@@ -110,7 +109,7 @@ function Search() {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className='flex justify-center items-center h-screen'
+          className='flex justify-center items-center mt-52 font-bold'
           >
             Jadwal tidak ditemukan
           </motion.div>

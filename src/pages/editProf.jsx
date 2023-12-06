@@ -4,13 +4,15 @@ import axios from 'axios'
 import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import pp from '../assets/Default_pfp.jpg'
-
+import Loading from '../components/loading'
 
 function editProf() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState([]);
   const status = localStorage.getItem('status');
+  const [loading, setLoading] = useState(false);
+
 
   const [img, setImg] = useState(null);
   const [username, setUsername] = useState(localStorage.getItem('nama'));
@@ -25,12 +27,15 @@ function editProf() {
 
   const handleUpdate = async() => {
     if (!username || !email ) {
+      setLoading(true);
       alert('Please fill in all fields');
+      setLoading(false);
       return;
+
     }
 
     else if (img !==null){
-  
+      setLoading(true);
       if (status == 'mahasiswa'){
         await axios.put(`https://cute-pink-fish-gear.cyclic.app/update-mahasiswa/${id}`,{
           username: username,
@@ -38,43 +43,57 @@ function editProf() {
           img: img
         },{
           headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'Access-Control-Allow-Credentials': true,
           }
         })
         .then((res) => {
           if(res.status === 200){
+            setLoading(false);
             alert('Profile updated successfully')
             navigate('/')
           }
           else{
+            setLoading(false);
             alert(res.data.message)
           }
         }).catch((err) => {
+          setLoading(false);
           console.log(err)
         })
       }
       else if (status == 'dosen'){
-        
+        setLoading(true);
         await axios.put(`https://cute-pink-fish-gear.cyclic.app/update-dosen/${id}`,{
           username: username,
           email: email,
           img: img
         },{
           headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'Access-Control-Allow-Credentials': true,
           }
         })
         .then((res) => {
           if(res.status === 200){
             localStorage.setItem('nama', username)
             localStorage.setItem('email', email)
+            setLoading(false);
             alert('Profile updated successfully')
             navigate('/')
           }
           else{
+            setLoading(false);
             alert(res.data.message)
           }
         }).catch((err) => {
+          setLoading(false);
           console.log(err)
         })
       }
@@ -83,38 +102,46 @@ function editProf() {
     else{
 
       if (status == 'mahasiswa'){
+        setLoading(true);
         await axios.put(`https://cute-pink-fish-gear.cyclic.app/updateMahasiswa/${id}`,{
           username: username,
           email: email,
         })
         .then((res) => {
           if(res.status === 200){
+            setLoading(false);
             alert('Profile updated successfully')
             navigate('/')
           }
           else{
+            setLoading(false);
             alert(res.data.message)
           }
         }).catch((err) => {
+          setLoading(false);
           console.log(err)
         })
       }
       else if (status == 'dosen'){
+        setLoading(true);
         await axios.put(`https://cute-pink-fish-gear.cyclic.app/updateDosen/${id}`,{
           username: username,
           email: email,
         })
         .then((res) => {
           if(res.status === 200){
+            setLoading(false);
             localStorage.setItem('nama', username)
             localStorage.setItem('email', email)
             navigate('/')
             alert('Profile updated successfully')
           }
           else{
+            setLoading(false);
             alert(res.data.message)
           }
         }).catch((err) => {
+          setLoading(false);
           console.log(err)
         })
       }
@@ -122,9 +149,13 @@ function editProf() {
   }
 
   const handleBack = () => {
+
     navigate('/profile')
   }
   
+  if(loading){
+    return <div className=' mt-48 flex justify-center items-center'><Loading/></div>
+  }
   return (
     <div className='mb-28'>
       <div>

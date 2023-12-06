@@ -17,6 +17,9 @@ function Home() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const style = localStorage.getItem('style')
+    const hari = new Date().getDay();
+    const base = import.meta.env.BASE_URL;
+    console.log(base);
 
     useEffect(() => {
       
@@ -26,6 +29,13 @@ function Home() {
             setLoading(true);
             const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/mahasiswa/${npm}`);
             const userData = response.data[0];
+            if (userData.kosma){
+              localStorage.setItem('kosma', true);
+            }
+            else {
+              localStorage.setItem('kosma', false);
+            }
+        
             setData([userData]);
             setNama(userData.nama_mahasiswa);
             localStorage.setItem('nama', userData.nama_mahasiswa);
@@ -52,19 +62,30 @@ function Home() {
         } else {
           navigate('/');
         }
-      }, [npm, noHp]);
+
+        if(hari == 0){
+          const kelas = localStorage.getItem('kelas');
+          axios.put(`https://cute-pink-fish-gear.cyclic.app/update-note/${kelas}`)
+        }
+
+        if(localStorage.getItem('token') == 'tes'){
+          navigate('/admin')
+        }
+
+        
+      }, [npm, noHp, hari]);
 
 
 
    useEffect(() => {       
-       const today = new Date()
-       if (today.getHours() > 0 && today.getHours() < 12) {
+       const today = new Date().getHours();
+       if (today > 0 && today < 12) {
             setSapa('Selamat Pagi')
         }
-        else if (today.getHours() >= 12 && today.getHours() < 15) {
+        else if (today >= 12 && today < 15) {
             setSapa('Selamat Siang')
         }
-        else if (today.getHours() >= 15 && today.getHours() < 18) {
+        else if (today >= 15 && today < 18) {
             setSapa('Selamat Sore')
         }
         else {

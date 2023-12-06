@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import Loading from '../components/loading';
 function forget() {
 
   const [nama, setNama] = useState('')
@@ -11,10 +12,12 @@ function forget() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [lastPassword, setLastPassword] = useState('')
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate()
   const handleSubmit = async () => {
     if (password === confirmPassword) {
+        setLoading(true);
         try {
             const response = await axios.post('https://cute-pink-fish-gear.cyclic.app/forget', {
                 username: nama,
@@ -28,21 +31,28 @@ function forget() {
  
 
             if (response.status === 200) {
+                setLoading(false);
                 alert('Silahkan tunggu email dari admin');
                 navigate('/waiting');
             } else {
+                setLoading(false);  
                 alert('Terjadi kesalahan. Silahkan coba lagi.');
                 console.log(response.data);
             }
         } catch (error) {
+            setLoading(false);
             console.error(error);
             alert('Terjadi kesalahan. Silahkan coba lagi.');
         }
     } else {
+        setLoading(false);
         alert('Password tidak sesuai');
     }
 };
 
+if(loading){
+  return <div className=' mt-48 flex justify-center items-center'><Loading/></div>
+}
 
   return (
     <div>

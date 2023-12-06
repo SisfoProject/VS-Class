@@ -88,7 +88,7 @@ function ProfileMenu() {
             variant="circular"
             size="sm"
             className="border border-gray-900 p-0.5"
-            src={defaultPfp} 
+            src={defaultPfp || img} 
             
           />
           <ChevronDownIcon
@@ -104,17 +104,21 @@ function ProfileMenu() {
               onClick={closeMenu}
               className="flex flex-col gap-2 rounded "
             >
+       
               <Typography
                 as="span"
                 variant="small"
                 className="font-normal hover:bg-gray-200 px-2 w-full rounded-lg "
               >
                 {nama}
+                {localStorage.getItem('status') =='dosen' ? (
+                null
+                ):(
                 <p>
                  Kelas {localStorage.getItem('kelas')}
                 </p>
-              </Typography>
-
+                )}
+              </Typography>         
               <Link to = '/profile' className="w-full">
               <Typography
                 as="span"
@@ -188,6 +192,8 @@ export default function NavbarX() {
               localStorage.setItem('status', 'mahasiswa');
               localStorage.setItem('img_url', data.foto_mahasiswa);
               localStorage.setItem('showJadwal', 1);
+;
+
               setStatus('Login Success');
               setOpens(true);
               setOpen((cur) => !cur);
@@ -218,6 +224,7 @@ export default function NavbarX() {
     }) .then((res) => {
         if (res.data.message == 'Login Success') { 
             const data = res.data.result[0]
+            localStorage.setItem('token', data.id);
             localStorage.setItem('noHp', data.no_hp);
             localStorage.setItem('nama',data.gelar_depan + ' ' + data.nama_dosen + ' ' + data.gelar_belakang);
             localStorage.setItem('email', data.email);
@@ -377,12 +384,12 @@ export default function NavbarX() {
                     </div>
 
                      <span className="flex-1 ms-3 whitespace-nowrap">Jadwal</span>
-                   
+{/*                    
                     {
                       localStorage.getItem('npm') !== null && localStorage.getItem('countJadwal') !== 0 ? 
                     <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-100 bg-gray-400 rounded-full dark:bg-gray-700 dark:text-gray-300">{localStorage.getItem('countJadwal')}
                     </span> : null
-                    }
+                    } */}
                   </Link>
               </li>
               <li>

@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Loading from '../components/loading'
 import {motion} from 'framer-motion'
+import { Link } from 'react-router-dom'
+
 function ruangan() {
 
-  const [hari, setHari] = useState(0)
+  const [hari, setHari] = useState(new Date().getDay());
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false);
   const sekarang = new Date();
@@ -15,12 +17,12 @@ function ruangan() {
   const detik = sekarang.getSeconds().toString().padStart(2, '0');
 
   useEffect(() => {
-    setHari(new Date().getDay())
     const now = `${jam}:${menit}:${detik}`
     const fetchData = async () => {
       setLoading(true);
+
       try {        
-        const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/ruangan`,{
+        const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/ruangan/${hari}/${now}`,{
           hari : hari,
           jam : now
         });
@@ -33,6 +35,7 @@ function ruangan() {
 
     };
     fetchData();  
+
   }, [hari]);
 
   if (loading) {
@@ -46,17 +49,18 @@ function ruangan() {
   return (
     <div className='lg:ml-20  mt-8'>
   <div className="overflow-x-auto">
-    <h1 className='text-center mt-16 mb-10 font-bold text-xl text-gray-700'>Ruangan Tersedia</h1>
+    <h1 className='text-center mt-16 mb-10 font-bold text-xl text-gray-700'>Daftar Ruangan</h1>
       <Table hoverable className='border rounded-md'>
         <Table.Head className='border'>
           <Table.HeadCell>Ruangan</Table.HeadCell>
           <Table.HeadCell>Gedung</Table.HeadCell>
           <Table.HeadCell>Status</Table.HeadCell>
+          <Table.HeadCell>More</Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
           {data.map((item,index ) => ( 
            
-              <Table.Row  className="bg-white border dark:border-gray-700 dark:bg-gray-800">
+              <Table.Row  className="bg-white border dark:border-gray-700 dark:bg-gray-800" key={index}>
                 <Table.Cell className="border whitespace-nowrap font-medium text-gray-900 dark:text-white">
                   <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5, delay: index * 0.1}}>
                     {item.nama_ruangan}
@@ -67,9 +71,14 @@ function ruangan() {
                     {item.nama_gedung}
                   </motion.div>
                 </Table.Cell>
-                <Table.Cell className='text-green-600'>
+                <Table.Cell className=''>
                   <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5, delay: index * 0.1}}>
                    {item.status}
+                  </motion.div>
+                </Table.Cell>
+                <Table.Cell className='text-green-600 border'>
+                  <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5, delay: index * 0.1}}>
+                    <Link to={`/view/${item.nama_ruangan}`}>View</Link>
                   </motion.div>
                 </Table.Cell>
               </Table.Row>

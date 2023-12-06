@@ -26,7 +26,9 @@ export function Dosen() {
   useEffect(() => {
     const fetchData = async () => {
         setLoading(true);
-        const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/dosen`);
+        const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/dosen`,{
+          
+        });
         setData(response.data);
         setLoading(false);
     };
@@ -61,7 +63,7 @@ if (loading) {
         {data.map((item, index) => (
           
           <Table.Row key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white border">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -70,7 +72,7 @@ if (loading) {
                {data.indexOf(item) + 1}
               </motion.div>
             </Table.Cell>
-            <Table.Cell>
+            <Table.Cell className="border">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -79,7 +81,7 @@ if (loading) {
                 {item.nama_dosen}
               </motion.div>
             </Table.Cell>
-            <Table.Cell>
+            <Table.Cell className="border">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
