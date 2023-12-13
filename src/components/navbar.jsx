@@ -33,7 +33,7 @@ function navbarcom() {
     const handleLogin = async (e) => {
       if(!checked){
         e.preventDefault();
-        axios.post('https://giddy-lamb-kerchief.cyclic.app/login-mahasiswa', {
+        axios.post('https://weak-gray-bighorn-sheep-yoke.cyclic.app/login-mahasiswa', {
             npm: npm,
             password: password
         })
