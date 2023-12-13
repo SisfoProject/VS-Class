@@ -18,7 +18,7 @@ function Search() {
       const fetchData = async () => {
   
         try {
-          const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/search/${title}`)
+          const response = await axios.get(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/search/${title}`)
           const datas = []
           datas.push(response.data);
           if (datas[0].length == 0) {
