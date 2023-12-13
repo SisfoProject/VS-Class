@@ -9,7 +9,7 @@ function fakultasDass() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('https://cute-pink-fish-gear.cyclic.app/gedung');
+      const response = await axios.get('https://weak-gray-bighorn-sheep-yoke.cyclic.app/gedung');
       const data = response.data;
       setData(data);
     }
