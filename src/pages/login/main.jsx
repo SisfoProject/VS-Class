@@ -33,7 +33,7 @@ const Login = () => {
 
     const handleSubmitMahsiswa = (e) => {
         e.preventDefault();
-        axios.post('https://cute-rose-viper-gear.cyclic.app/login-mahasiswa', {
+        axios.post('https://weak-gray-bighorn-sheep-yoke.cyclic.app/login-mahasiswa', {
             npm: npm,
             password: password
         })
