@@ -68,7 +68,7 @@ function ProfileMenu() {
 
  useEffect(() => {
    if(localStorage.getItem('img_url') !== null){
-     setImg('https://cute-pink-fish-gear.cyclic.app/' + localStorage.getItem('img_url'))
+     setImg('https://weak-gray-bighorn-sheep-yoke.cyclic.app/' + localStorage.getItem('img_url'))
    }
 
  },[nama])
@@ -178,7 +178,7 @@ export default function NavbarX() {
     setLoading(true);
     if(!checked){
       e.preventDefault();
-      axios.post('https://cute-pink-fish-gear.cyclic.app/login-mahasiswa', {
+      axios.post('https://weak-gray-bighorn-sheep-yoke.cyclic.app/login-mahasiswa', {
           npm: npm,
           password: password
       })
@@ -218,7 +218,7 @@ export default function NavbarX() {
     else if(checked){
 
       e.preventDefault();
-      axios.post('https://cute-pink-fish-gear.cyclic.app/login-dosen', {
+      axios.post('https://weak-gray-bighorn-sheep-yoke.cyclic.app/login-dosen', {
         noHp: noHp,
         password: password
     }) .then((res) => {
