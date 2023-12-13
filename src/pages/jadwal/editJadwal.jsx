@@ -32,7 +32,7 @@ function editJadwal() {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await axios.get(`http://localhost:3000/get-jadwal/${id}`)
+        const response = await axios.get(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/get-jadwal/${id}`)
         setMatkul(response.data[0].nama_matkul)
         setHari(getDayNameFromNumber(response.data[0].hari))
         setHarinumber(response.data[0].hari)
@@ -40,7 +40,7 @@ function editJadwal() {
         setJamAkhir(response.data[0].akhir)
         setKelas(response.data[0].kelas)
         setRuangan(response.data[0].nama_ruangan)
-        const ruang = await axios.get(`http://localhost:3000/ruangan`)
+        const ruang = await axios.get(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/ruangan`)
         setData(ruang.data)
       } catch (error) {
         console.error(error)
@@ -54,7 +54,7 @@ function editJadwal() {
 
   const handleSubmit = async() => {
 
-    await axios.put(`http://localhost:3000/update-jadwal/${id}`,{
+    await axios.put(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/update-jadwal/${id}`,{
         hari: harinumber,
         jam: jamAwal,
         jam_akhir: jamAkhir,
