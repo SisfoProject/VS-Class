@@ -9,7 +9,7 @@ function dosenDass() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('https://cute-pink-fish-gear.cyclic.app/dosen');
+      const response = await axios.get('https://weak-gray-bighorn-sheep-yoke.cyclic.app/dosen');
       const data = response.data;
       setData(data);
     }
