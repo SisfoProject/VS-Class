@@ -22,7 +22,7 @@ function editProf() {
   const url = img ? URL.createObjectURL(img) : null;
 
   useEffect(() => {
-    setImage(`https://cute-pink-fish-gear.cyclic.app/${localStorage.getItem('img_url')}`);
+    setImage(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/${localStorage.getItem('img_url')}`);
   },[username,email])
 
   const handleUpdate = async() => {
@@ -37,7 +37,7 @@ function editProf() {
     else if (img !==null){
       setLoading(true);
       if (status == 'mahasiswa'){
-        await axios.put(`https://cute-pink-fish-gear.cyclic.app/update-mahasiswa/${id}`,{
+        await axios.put(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/update-mahasiswa/${id}`,{
           username: username,
           email: email,
           img: img
@@ -67,7 +67,7 @@ function editProf() {
       }
       else if (status == 'dosen'){
         setLoading(true);
-        await axios.put(`https://cute-pink-fish-gear.cyclic.app/update-dosen/${id}`,{
+        await axios.put(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/update-dosen/${id}`,{
           username: username,
           email: email,
           img: img
@@ -103,7 +103,7 @@ function editProf() {
 
       if (status == 'mahasiswa'){
         setLoading(true);
-        await axios.put(`https://cute-pink-fish-gear.cyclic.app/updateMahasiswa/${id}`,{
+        await axios.put(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/updateMahasiswa/${id}`,{
           username: username,
           email: email,
         })
@@ -124,7 +124,7 @@ function editProf() {
       }
       else if (status == 'dosen'){
         setLoading(true);
-        await axios.put(`https://cute-pink-fish-gear.cyclic.app/updateDosen/${id}`,{
+        await axios.put(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/updateDosen/${id}`,{
           username: username,
           email: email,
         })
