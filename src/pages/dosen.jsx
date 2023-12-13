@@ -26,7 +26,7 @@ export function Dosen() {
   useEffect(() => {
     const fetchData = async () => {
         setLoading(true);
-        const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/dosen`,{
+        const response = await axios.get(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/dosen`,{
           
         });
         setData(response.data);
