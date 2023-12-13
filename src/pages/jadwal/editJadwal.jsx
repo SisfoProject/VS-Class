@@ -60,7 +60,7 @@ function editJadwal() {
         jam_akhir: jamAkhir,
         kodeRUangan: kodeRUang
     }) 
-    navigate(/jadwal);
+    navigate('/jadwal')
   }
   console.log(kodeRUang)
 
