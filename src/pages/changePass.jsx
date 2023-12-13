@@ -29,11 +29,11 @@ function changePass() {
   const handleUpdate = () => {
     setLoading(true);
     if(newPassword == confirmPassword){      
-      axios.post(`https://cute-pink-fish-gear.cyclic.app/${urlLocB}/${id}`, {
+      axios.post(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/${urlLocB}/${id}`, {
        password : oldPassword
       }) .then((res) => {
         if(res.status === 200){
-          axios.put(`https://cute-pink-fish-gear.cyclic.app/${urlLocA}/${id}`, {
+          axios.put(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/${urlLocA}/${id}`, {
             password : password
           })
           .then((res) => {
