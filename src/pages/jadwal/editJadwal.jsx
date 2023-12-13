@@ -59,11 +59,8 @@ function editJadwal() {
         jam: jamAwal,
         jam_akhir: jamAkhir,
         kodeRUangan: kodeRUang
-    }) .then((res) => {
-        navigate('/jadwal')
-    }) .catch((err) => {
-        console.log(err)
-    })
+    }) 
+    navigate(/jadwal);
   }
   console.log(kodeRUang)
 
