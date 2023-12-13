@@ -14,7 +14,7 @@ function PriviewJadwal() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/get-jadwal/${id}`);
+      const response = await axios.get(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/get-jadwal/${id}`);
       const data = response.data;
       setData(data);
     }
@@ -24,7 +24,7 @@ function PriviewJadwal() {
   const handleSubmit = async() => {
     const keterangan = `${status + ' ' + tipe}`
     
-      await axios.put(`https://cute-pink-fish-gear.cyclic.app/update-status-jadwal/${id}`,{
+      await axios.put(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/update-status-jadwal/${id}`,{
           keterangan: keterangan,
           note: note,
           kelas: data[0].kelas
