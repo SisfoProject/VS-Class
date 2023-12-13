@@ -22,7 +22,7 @@ function ruangan() {
       setLoading(true);
 
       try {        
-        const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/ruangan/${hari}/${now}`,{
+        const response = await axios.get(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/ruangan/${hari}/${now}`,{
           hari : hari,
           jam : now
         });
