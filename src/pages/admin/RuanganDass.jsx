@@ -10,7 +10,7 @@ function RuanganDass() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('https://cute-pink-fish-gear.cyclic.app/ruangan');
+      const response = await axios.get('https://weak-gray-bighorn-sheep-yoke.cyclic.app/ruangan');
       const data = response.data;
       setData(data);
     }
