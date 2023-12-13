@@ -25,7 +25,7 @@ function profile() {
     transition={{ duration: 0.8, delay: 0.1 }}
     className='md:ml-20 mt-8 flex flex-col md:flex-row gap-3 w-[90%] border p-6 rounded-3xl shadow-xl lg:w-[50%] xl:w-[40%] items-center justify-center'>
         <div className='md:border-r-2 md:p-4 sm:border-gray-700'>
-          <img src={pp || `https://cute-pink-fish-gear.cyclic.app/${localStorage.getItem('img_url')}` } alt=""  className='rounded-full w-44 h-44'/>
+          <img src={pp || `https://weak-gray-bighorn-sheep-yoke.cyclic.app/${localStorage.getItem('img_url')}` } alt=""  className='rounded-full w-44 h-44'/>
         </div>
         <div className='flex flex-col justify-center gap-3 items-center md:justify-start md:items-start md:ml-4'>
           <h1 className='flex font-extrabold 2xl:text-3xl md:text-2xl sm:text-xl'>{nama}</h1>
