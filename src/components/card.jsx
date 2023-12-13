@@ -25,10 +25,10 @@ useEffect(() => {
     try {
       let response;
       if (status === 'mahasiswa') {
-        response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/jadwal/${hari}/${kelas}`);
+        response = await axios.get(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/jadwal/${hari}/${kelas}`);
       } else if (status === 'dosen') {
         const noHp = localStorage.getItem('noHp');
-        response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/all-jadwal-dosen/${hari}/${noHp}`);
+        response = await axios.get(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/all-jadwal-dosen/${hari}/${noHp}`);
       }
 
       if (response.data === 'tidak ada jadwal') {
