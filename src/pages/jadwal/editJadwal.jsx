@@ -3,6 +3,7 @@ import { Dropdown } from 'flowbite-react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams,useNavigate } from 'react-router-dom'
+
 function editJadwal() {
   const navigate = useNavigate()
   const { id } = useParams()
@@ -14,6 +15,9 @@ function editJadwal() {
   const [matkul, setMatkul] = useState('')
   const [jamAkhir, setJamAkhir] = useState('')
   const [kelas, setKelas] = useState('')
+  const [Ruangan, setRuangan] = useState('')
+  const [kodeRUang, setKodeRuang] = useState('')
+
   function getDayNameFromNumber(dayNumber) {
     const daysOfWeek = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 
@@ -28,13 +32,16 @@ function editJadwal() {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/get-jadwal/${id}`)
+        const response = await axios.get(`http://localhost:3000/get-jadwal/${id}`)
         setMatkul(response.data[0].nama_matkul)
         setHari(getDayNameFromNumber(response.data[0].hari))
         setHarinumber(response.data[0].hari)
         setJamAwal(response.data[0].awal)
         setJamAkhir(response.data[0].akhir)
         setKelas(response.data[0].kelas)
+        setRuangan(response.data[0].nama_ruangan)
+        const ruang = await axios.get(`http://localhost:3000/ruangan`)
+        setData(ruang.data)
       } catch (error) {
         console.error(error)
         alert('ada masalah di server')
@@ -46,21 +53,24 @@ function editJadwal() {
   },[id])
 
   const handleSubmit = async() => {
-    await axios.put(`https://cute-pink-fish-gear.cyclic.app/update-jadwal/${id}`,{
+
+    await axios.put(`http://localhost:3000/update-jadwal/${id}`,{
         hari: harinumber,
         jam: jamAwal,
-        jam_akhir: jamAkhir
+        jam_akhir: jamAkhir,
+        kodeRUangan: kodeRUang
     }) .then((res) => {
         navigate('/jadwal')
     }) .catch((err) => {
         console.log(err)
     })
   }
+  console.log(kodeRUang)
 
   return (
     <div>
       <div className='w-full h-full '>
-        <div className='flex justify-center mt-20 flex-col items-center'>
+        <div className='flex justify-center mt-20 flex-col items-center mb-[1000px]'>
           <div className='font-bold text-3xl'>
             Edit Jadwal
           </div>
@@ -70,7 +80,7 @@ function editJadwal() {
               <input type="text"value={matkul} className='rounded-xl' readOnly  />
               <h1 className='font-bold text-center'>Kelas {kelas}</h1>
               <div className='flex gap-5' >
-                <div>
+                <div className='flex flex-col gap-2'>
                   <h1>Hari</h1>
                   <Dropdown label={hari} dismissOnClick={true} className=''>
                     <Dropdown.Item onClick={() => { setHari('Senin'); setHarinumber(1); }}>Senin</Dropdown.Item>
@@ -80,6 +90,14 @@ function editJadwal() {
                     <Dropdown.Item onClick={() => { setHari('Jumat'); setHarinumber(5); }}>Jumat</Dropdown.Item>
                     <Dropdown.Item onClick={() => { setHari('Sabtu'); setHarinumber(6); }}>Sabtu</Dropdown.Item>
                   </Dropdown>
+
+                  <h1>Ruangan</h1>
+                  <Dropdown label={Ruangan} size={"sm"} placement="bottom" dismissOnClick={true} className='absolute'>
+                    {data.map((item) => (
+                    <Dropdown.Item onClick={() => {setKodeRuang(`${item.kode_ruangan}`); setRuangan(item.nama_ruangan)}}>{item.nama_ruangan}</Dropdown.Item>
+                    ))}
+                  </Dropdown>
+
                 </div>
                 <div className='flex gap-2 flex-col'>
                   <h1>Jam Mulai</h1>
