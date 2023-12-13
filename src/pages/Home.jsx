@@ -27,7 +27,7 @@ function Home() {
           try {
 
             setLoading(true);
-            const response = await axios.get(`https://cute-pink-fish-gear.cyclic.app/mahasiswa/${npm}`);
+            const response = await axios.get(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/mahasiswa/${npm}`);
             const userData = response.data[0];
             if (userData.kosma){
               localStorage.setItem('kosma', true);
@@ -65,7 +65,7 @@ function Home() {
 
         if(hari == 0){
           const kelas = localStorage.getItem('kelas');
-          axios.put(`https://cute-pink-fish-gear.cyclic.app/update-note/${kelas}`)
+          axios.put(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/update-note/${kelas}`)
         }
 
         if(localStorage.getItem('token') == 'tes'){
