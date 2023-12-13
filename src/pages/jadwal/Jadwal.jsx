@@ -18,8 +18,8 @@ function Jadwal() {
     const fetchData = async () => {
       try {
         const endpoint = localStorage.getItem('status') === 'mahasiswa' ?
-          `https://cute-pink-fish-gear.cyclic.app/all-jadwal/${kelas}` :
-          `https://cute-pink-fish-gear.cyclic.app/all-jadwal-dosen/${noHp}`;
+          `https://weak-gray-bighorn-sheep-yoke.cyclic.app/all-jadwal/${kelas}` :
+          `https://weak-gray-bighorn-sheep-yoke.cyclic.app/all-jadwal-dosen/${noHp}`;
 
         const response = await axios.get(endpoint);
         const groupedByDay = groupDataByDay(response.data);
