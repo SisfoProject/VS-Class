@@ -11,7 +11,7 @@ function jadwalDas() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('https://cute-pink-fish-gear.cyclic.app/jadwal');
+      const response = await axios.get('https://weak-gray-bighorn-sheep-yoke.cyclic.app/jadwal');
       const data = response.data;
       setData(data);
     }
