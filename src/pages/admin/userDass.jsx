@@ -10,7 +10,7 @@ function userDass() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('https://cute-pink-fish-gear.cyclic.app/forget');
+      const response = await axios.get('https://weak-gray-bighorn-sheep-yoke.cyclic.app/forget');
       const data = response.data;
       setData(data);
     }
