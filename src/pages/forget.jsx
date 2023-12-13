@@ -19,7 +19,7 @@ function forget() {
     if (password === confirmPassword) {
         setLoading(true);
         try {
-            const response = await axios.post('https://cute-pink-fish-gear.cyclic.app/forget', {
+            const response = await axios.post('https://weak-gray-bighorn-sheep-yoke.cyclic.app/forget', {
                 username: nama,
                 email: email,
                 oldPassword: lastPassword,
