@@ -23,7 +23,7 @@ const Root = () => {
       <React.StrictMode>
       <BrowserRouter>
         <ThemeProvider>
-          <div className={"p-4 mt-16 mb-20 transition-all duration-300 "}>
+          <div className={"p-4 flex justify-center flex-col mt-16 mb-20 transition-all duration-300 "}>
               
             <Start/>
           
