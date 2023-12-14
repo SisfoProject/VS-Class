@@ -15,12 +15,12 @@ function viewRuangan() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.post(`https://cute-pink-fish-gear.cyclic.app/show-jadwal/`, {
+      const response = await axios.post(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/show-jadwal/`, {
         ruangan : id
       });
       if (response.status === 201) {
         setMenu(true);
-        const response = await axios.post(`https://cute-pink-fish-gear.cyclic.app/ruangan-view`,{
+        const response = await axios.post(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/ruangan-view`,{
           id : id
         });
         const data = response.data;
