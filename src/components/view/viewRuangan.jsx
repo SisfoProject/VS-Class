@@ -43,7 +43,7 @@ function viewRuangan() {
               <div className="flex gap-2 justify-center flex-col mt-10">
                 {menu == true ? (
                   <div className="flex fl gap-4 flex-col justify-center items-center shadow-lg rounded-xl border pb-6 md:pb-0 md:flex-row md:pr-4 bg-[url(./rm380-14.jpg)] bg">
-                      <img className="w-72 rounded-xl" src={`https://cute-pink-fish-gear.cyclic.app/assets/room/${id.substring(2)}.jpg`} alt="" />
+                      <img className="w-72 rounded-xl" src={`https://weak-gray-bighorn-sheep-yoke.cyclic.app/assets/room/${id.substring(2)}.jpg`} alt="" />
                       <div className="textdetail">
                           <p className='text-sm font-bold'>Ruangan : {data.nama_ruangan} </p>
                           <p className='text-sm font-bold'>Lokasi : Sistem Informasi B, {data.detail_lokasi} </p>
@@ -57,7 +57,7 @@ function viewRuangan() {
 
                 ) : (
                   <div className="flex gap-4 justify-center items-center shadow-lg rounded-xl border pr-4 bg-[url(./rm380-14.jpg)] bg">
-                      <img className="w-72 rounded-xl" src={`https://cute-pink-fish-gear.cyclic.app/assets/room/${id.substring(2)}.jpg`} alt="" />
+                      <img className="w-72 rounded-xl" src={`https://weak-gray-bighorn-sheep-yoke.cyclic.app/assets/room/${id.substring(2)}.jpg`} alt="" />
                       <div className="textdetail">
                         <p className='text-sm font-bold'>Ruangan : {data.nama_ruangan} </p>
                         <p className='text-sm font-bold'>Lokasi : Sistem Informasi B, {data.detail} </p>
