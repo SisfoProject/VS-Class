@@ -64,6 +64,8 @@ function editJadwal() {
     }) .catch((err) => {
         console.log(err)
     })
+
+      navigate('/jadwal')
   }
   console.log(kodeRUang)
 
