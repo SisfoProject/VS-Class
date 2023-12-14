@@ -52,22 +52,28 @@ function editJadwal() {
     fetchData()
   },[id])
 
-  const handleSubmit = async() => {
-
-    await axios.put(`https://weak-gray-bighorn-sheep-yoke.cyclic.app/update-jadwal/${id}`,{
+  const handleSubmit = async () => {
+    navigate('/jadwal')
+    try {
+      await axios.put(`http://localhost:3000/update-jadwal/${id}`, {
         hari: harinumber,
         jam: jamAwal,
         jam_akhir: jamAkhir,
         kodeRUangan: kodeRUang
-    }) .then((res) => {
-        navigate('/jadwal')
-    }) .catch((err) => {
-        console.log(err)
-    })
-
-      navigate('/jadwal')
-  }
-  console.log(kodeRUang)
+      });
+  
+      // Add any specific success handling logic if needed
+      console.log('Request successful');
+    } catch (error) {
+      console.error(error);
+      // Handle error
+      alert('Ada masalah di server');
+    } finally {
+      // This block will be executed regardless of success or failure
+      navigate('/jadwal');
+    }
+    navigate('/jadwal')
+  };
 
   return (
     <div>
